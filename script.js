@@ -1,21 +1,24 @@
 async function verifyCertificate() {
     const userInput = document.getElementById('cert-number').value.trim();
 
-    // বক্স খালি থাকলে ওয়ার্নিং দেবে
     if (!userInput) {
         alert("Please enter a document number.");
         return;
     }
 
     try {
-        const response = await fetch('data.json');
+        // GitHub Pages-এর জন্য './' যোগ করা ভালো
+        const response = await fetch('./data.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const certificates = await response.json();
         
-        // ডাটাবেজে আপনার দেওয়া নাম্বার খুঁজবে
         const foundData = certificates.find(item => item.id === userInput);
 
         if (foundData) {
-            // সঠিক নাম্বার হলে রেজাল্ট পেজ দেখাবে
             document.getElementById('search-section').classList.add('hidden');
             document.getElementById('result-section').classList.remove('hidden');
 
@@ -30,11 +33,10 @@ async function verifyCertificate() {
                 <div class="data-item"><span class="data-label">TYPE :</span> <span>${foundData.type}</span></div>
             `;
         } else {
-            // ভুল নাম্বার হলে এই মেসেজ আসবে
             alert("Certificate not found in our record!");
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("System error! Please make sure data.json is present.");
+        alert("Failed to load data. Please make sure data.json exists and try again.\n\nError: " + error.message);
     }
 }
