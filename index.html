@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Authentication</title>
+    <title>Certificate Verifier</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="overlay"></div>
 
-    <div class="main-wrapper">
-        <header>
-            <div class="header-content">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Bureau_Veritas_Logo.png" alt="Logo">
-                <p>Authenticate <span>your document</span></p>
-            </div>
-        </header>
-
-        <section id="home-page" class="content-box">
-            <div class="search-container">
-                <h3>Please search your e-document by filling the document number.</h3>
+    <div class="bg-wrapper">
+        
+        <div id="search-page" class="center-content">
+            <div class="search-box">
+                <p>Please search your e-document by filling the document number.</p>
                 <div class="input-group">
                     <span class="label">Document number</span>
-                    <input type="text" id="cert-input" placeholder="e.g. 148-2026...">
-                    <button onclick="handleSearch()">🔍</button>
+                    <input type="text" id="cert-number" placeholder="e.g. 148-2026...">
+                    <button onclick="showResult()">🔍</button>
+                </div>
+                <div class="footer-link">
+                    <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="result-page" class="content-box hidden">
-            <div class="success-icon">✔️</div>
-            <div id="result-display" class="info-table">
+        <div id="result-page" class="center-content hidden">
+            <div class="result-card">
+                <div class="success-mark">✔️</div>
+                <div id="data-output">
+                    </div>
+                <p class="notice">For any further information on this document, please contact the issuer of the document.</p>
+                <div class="footer-link">
+                    <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
                 </div>
-            <p class="footer-note">For any further information on this document, please contact the issuer of the document.</p>
-        </section>
+            </div>
+        </div>
 
-        <footer>
-            <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
-        </footer>
     </div>
 
     <script src="script.js"></script>
