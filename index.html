@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Verification</title>
+    <title>Certificate Authentication</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="overlay"></div>
 
-    <div class="main-container">
+    <div class="main-wrapper">
         <header>
-            <div class="logo-area">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Bureau_Veritas_Logo.png" alt="Logo" class="logo">
-                <div class="auth-text">Authenticate <span>your document</span></div>
+            <div class="header-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Bureau_Veritas_Logo.png" alt="Logo">
+                <p>Authenticate <span>your document</span></p>
             </div>
         </header>
 
-        <div class="content-wrapper" id="search-section">
-            <div class="info-box">
-                <p>Please search your e-document by filling the document number.</p>
-                <div class="search-bar">
+        <section id="home-page" class="content-box">
+            <div class="search-container">
+                <h3>Please search your e-document by filling the document number.</h3>
+                <div class="input-group">
                     <span class="label">Document number</span>
-                    <input type="text" id="doc-id" placeholder="Enter ID here...">
-                    <button onclick="searchCertificate()"><i class="search-icon">🔍</i></button>
+                    <input type="text" id="cert-input" placeholder="e.g. 148-2026...">
+                    <button onclick="handleSearch()">🔍</button>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content-wrapper hidden" id="result-section">
-            <div class="success-tick">✔️</div>
-            <div class="result-details" id="data-container">
+        <section id="result-page" class="content-box hidden">
+            <div class="success-icon">✔️</div>
+            <div id="result-display" class="info-table">
                 </div>
-            <p class="contact-text">For any further information on this document, please contact the issuer of the document.</p>
-        </div>
+            <p class="footer-note">For any further information on this document, please contact the issuer of the document.</p>
+        </section>
 
         <footer>
             <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
