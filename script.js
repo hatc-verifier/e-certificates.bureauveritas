@@ -1,8 +1,8 @@
-async function handleSearch() {
-    const searchVal = document.getElementById('cert-input').value.trim();
-    
-    if (!searchVal) {
-        alert("Please enter a document number.");
+async function showResult() {
+    const inputVal = document.getElementById('cert-number').value.trim();
+
+    if (!inputVal) {
+        alert("Please enter a document number!");
         return;
     }
 
@@ -10,30 +10,28 @@ async function handleSearch() {
         const response = await fetch('data.json');
         const data = await response.json();
 
-        // JSON ফাইল থেকে ডাটা খোঁজা
-        const result = data.find(item => item.id === searchVal);
+        const found = data.find(item => item.id === inputVal);
 
-        if (result) {
-            // হোম পেজ লুকানো এবং রেজাল্ট পেজ দেখানো
-            document.getElementById('home-page').classList.add('hidden');
-            const resultPage = document.getElementById('result-page');
-            resultPage.classList.remove('hidden');
+        if (found) {
+            document.getElementById('search-page').classList.add('hidden');
+            document.getElementById('result-page').classList.remove('hidden');
 
-            const display = document.getElementById('result-display');
-            display.innerHTML = `
-                <div class="info-row"><span class="row-label">Deliverable Id:</span> <span>${result.id}</span></div>
-                <div class="info-row"><span class="row-label">Published on:</span> <span>${result.published}</span></div>
-                <div class="info-row"><span class="row-label">QR Code Status:</span> <span>${result.status}</span></div>
-                <div class="info-row"><span class="row-label">NAME:</span> <span>${result.name}</span></div>
-                <div class="info-row"><span class="row-label">ID:</span> <span>${result.user_id}</span></div>
-                <div class="info-row"><span class="row-label">VALID UNTIL:</span> <span>${result.valid_until}</span></div>
-                <div class="info-row"><span class="row-label">TYPE:</span> <span>${result.type}</span></div>
-                <div class="info-row"><span class="row-label">TRAINING LOCATION:</span> <span>${result.location}</span></div>
+            const output = document.getElementById('data-output');
+            output.innerHTML = `
+                <div class="info-item"><span class="info-label">Deliverable Id :</span> <span>${found.id}</span></div>
+                <div class="info-item"><span class="info-label">Published on :</span> <span>${found.published}</span></div>
+                <div class="info-item"><span class="info-label">QR Code Status :</span> <span>${found.status}</span></div>
+                <div class="info-item"><span class="info-label">NAME :</span> <span>${found.name}</span></div>
+                <div class="info-item"><span class="info-label">ID :</span> <span>${found.user_id}</span></div>
+                <div class="info-item"><span class="info-label">ISSUED ON :</span> <span>${found.issued}</span></div>
+                <div class="info-item"><span class="info-label">VALID UNTIL :</span> <span>${found.valid_until}</span></div>
+                <div class="info-item"><span class="info-label">TYPE :</span> <span>${found.type}</span></div>
+                <div class="info-item"><span class="info-label">TRAINING LOCATION :</span> <span>${found.location}</span></div>
             `;
         } else {
-            alert("Certificate not found!");
+            alert("Certificate number not found in database.");
         }
-    } catch (error) {
-        console.error("Error fetching data:", error);
+    } catch (err) {
+        console.error("Error loading data:", err);
     }
 }
