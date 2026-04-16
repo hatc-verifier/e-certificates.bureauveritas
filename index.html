@@ -7,30 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-wrapper">
-        <div id="search-view" class="content-view">
-            <div class="white-card">
+    <div class="main-container">
+        <div id="search-section" class="content-view">
+            <div class="search-card">
                 <h3>Please search your e-document by filling the document number.</h3>
-                <div class="custom-search-bar">
-                    <div class="side-label">Document number</div>
-                    <input type="text" id="cert-id" placeholder="148-2026-022489-EN">
-                    <button class="blue-btn" onclick="searchData()">🔍</button>
+                <div class="input-group">
+                    <div class="label-box">Document number</div>
+                    <input type="text" id="cert-number" placeholder="e.g. 148-2026..." value="">
+                    <button id="search-trigger" onclick="verifyCertificate()">🔍</button>
                 </div>
             </div>
         </div>
 
-        <div id="result-view" class="content-view hidden">
-            <div class="white-card result-box">
-                <div class="status-tick">✔️</div>
-                <div id="data-container"></div>
-                <p class="footer-note">For any further information on this document, please contact the issuer of the document.</p>
+        <div id="result-section" class="content-view hidden">
+            <div class="search-card result-box">
+                <div class="status-icon">✔️</div>
+                <div id="result-data"></div>
+                <p class="warning-text">For any further information on this document, please contact the issuer of the document.</p>
             </div>
         </div>
 
-        <div class="bottom-footer">
+        <footer class="footer-fixed">
             <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
-        </div>
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
