@@ -1,37 +1,52 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* আপনার ব্যাকগ্রাউন্ড ইমেজ */
-.bg-container {
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* স্ক্রল বন্ধ করার জন্য */
+    font-family: Arial, sans-serif;
+}
+
+.app-container {
     background: url('Background.png') no-repeat center top;
     background-size: cover;
     height: 100vh;
     width: 100vw;
     position: relative;
-    overflow: hidden;
 }
 
-.main-content {
+.view {
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    align-items: flex-start; /* কন্টেন্ট উপরে রাখার জন্য */
+    padding-top: 25vh; /* বক্সটিকে একটু উপরে তোলার জন্য */
 }
 
-/* আপনার স্ক্রিনশটের মতো সাদা শ্যাডো বক্স */
-.glass-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 12px;
+.white-card {
+    background: white;
     width: 90%;
-    max-width: 500px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     text-align: center;
 }
 
-h2 { font-size: 18px; color: #333; margin-bottom: 20px; font-weight: bold; }
+h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
 
 /* সার্চ বক্স ডিজাইন */
-.search-form {
+.search-box {
     display: flex;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -39,54 +54,41 @@ h2 { font-size: 18px; color: #333; margin-bottom: 20px; font-weight: bold; }
     height: 45px;
 }
 
-.input-label {
-    background: #f0f0f0;
-    padding: 10px;
-    font-size: 13px;
-    color: #555;
-    border-right: 1px solid #ccc;
+.input-tag {
+    background: #f1f1f1;
+    font-size: 12px;
+    padding: 0 10px;
     display: flex;
     align-items: center;
+    border-right: 1px solid #ccc;
+    color: #555;
 }
 
 input {
     flex: 1;
     border: none;
-    padding: 10px;
+    padding: 0 10px;
     outline: none;
-}
-
-.search-btn {
-    background: #00008b;
-    color: white;
-    border: none;
-    padding: 0 15px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-/* নিচে বাম কোণায় লিংক */
-.footer-bottom {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-}
-
-.footer-bottom a {
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
     font-size: 14px;
 }
 
-.hidden { display: none; }
+.blue-search-btn {
+    background: #0000a0; /* গাঢ় নীল */
+    width: 50px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/* রেজাল্ট টেবিল */
-.data-table { text-align: left; margin-top: 15px; }
-.data-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
-.row-key { font-weight: bold; }
+.search-icon {
+    color: white;
+    font-size: 18px;
+}
 
-.success-icon {
+/* রেজাল্ট কার্ড স্টাইল */
+.green-tick {
     background: #8bc34a;
     color: white;
     width: 40px;
@@ -98,4 +100,40 @@ input {
     margin-bottom: 15px;
 }
 
-.disclaimer { font-size: 12px; color: #666; margin-top: 15px; }
+.scrollable-data {
+    text-align: left;
+    max-height: 50vh;
+    overflow-y: auto; /* ডাটা বেশি হলে শুধু বক্সের ভেতর স্ক্রল হবে */
+}
+
+.data-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+.data-label { font-weight: bold; color: #444; }
+
+.bottom-note {
+    font-size: 11px;
+    color: #777;
+    margin-top: 15px;
+}
+
+/* ফুটার স্টাইল */
+.fixed-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.fixed-footer a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.hidden { display: none !important; }
