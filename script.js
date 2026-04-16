@@ -1,34 +1,34 @@
 async function searchData() {
-    const val = document.getElementById('cert-input').value.trim();
+    const inputField = document.getElementById('cert-id');
+    const val = inputField.value.trim();
+
     if (!val) {
-        alert("Please enter a document number");
+        alert("Please enter a document number.");
         return;
     }
 
     try {
-        const res = await fetch('data.json');
-        const data = await res.json();
-        const item = data.find(i => i.id === val);
+        const response = await fetch('data.json');
+        const data = await response.json();
+        const found = data.find(item => item.id === val);
 
-        if (item) {
-            // সার্চ পেজ লুকিয়ে রেজাল্ট পেজ দেখানো
+        if (found) {
             document.getElementById('search-view').classList.add('hidden');
             document.getElementById('result-view').classList.remove('hidden');
-            
-            document.getElementById('display-data').innerHTML = `
-                <div class="data-row"><span class="data-label">Deliverable Id :</span> <span>${item.id}</span></div>
-                <div class="data-row"><span class="data-label">Published on :</span> <span>${item.published || '06/04/2026'}</span></div>
-                <div class="data-row"><span class="data-label">Status :</span> <span style="color:green; font-weight:bold;">Validated</span></div>
-                <div class="data-row"><span class="data-label">NAME :</span> <span>${item.name}</span></div>
-                <div class="data-row"><span class="data-label">ID :</span> <span>${item.user_id}</span></div>
-                <div class="data-row"><span class="data-label">VALID UNTIL :</span> <span>${item.valid_until}</span></div>
-                <div class="data-row"><span class="data-label">TYPE :</span> <span>${item.type}</span></div>
+
+            const container = document.getElementById('data-container');
+            container.innerHTML = `
+                <div class="data-row"><span class="data-label">Deliverable Id :</span> <span>${found.id}</span></div>
+                <div class="data-row"><span class="data-label">Status :</span> <span style="color:green;font-weight:bold;">Validated</span></div>
+                <div class="data-row"><span class="data-label">NAME :</span> <span>${found.name}</span></div>
+                <div class="data-row"><span class="data-label">ID :</span> <span>${found.user_id}</span></div>
+                <div class="data-row"><span class="data-label">VALID UNTIL :</span> <span>${found.valid_until}</span></div>
+                <div class="data-row"><span class="data-label">TYPE :</span> <span>${found.type}</span></div>
             `;
         } else {
-            alert("Certificate number not found in our record!");
+            alert("Record not found!");
         }
-    } catch (e) { 
-        console.error(e); 
-        alert("Error loading data. Check if data.json exists.");
+    } catch (err) {
+        alert("Error loading data.json");
     }
 }
