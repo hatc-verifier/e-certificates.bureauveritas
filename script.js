@@ -1,33 +1,37 @@
-async function performSearch() {
-    const searchId = document.getElementById('cert-id').value.trim();
-    if (!searchId) {
-        alert("Please enter a document number!");
+async function goToResult() {
+    const searchInput = document.getElementById('cert-id').value.trim();
+
+    if (!searchInput) {
+        alert("Please enter a certificate number.");
         return;
     }
 
     try {
         const response = await fetch('data.json');
-        const data = await response.json();
-        const result = data.find(item => item.id === searchId);
+        const certificates = await response.json();
 
-        if (result) {
-            document.getElementById('search-section').classList.add('hidden');
-            document.getElementById('result-section').classList.remove('hidden');
+        const match = certificates.find(c => c.id === searchInput);
 
-            const table = document.getElementById('data-list');
-            table.innerHTML = `
-                <div class="data-row"><span class="row-key">Deliverable Id :</span><span>${result.id}</span></div>
-                <div class="data-row"><span class="row-key">Published on :</span><span>${result.published}</span></div>
-                <div class="data-row"><span class="row-key">Status :</span><span>${result.status}</span></div>
-                <div class="data-row"><span class="row-key">NAME :</span><span>${result.name}</span></div>
-                <div class="data-row"><span class="row-key">ID :</span><span>${result.user_id}</span></div>
-                <div class="data-row"><span class="row-key">VALID UNTIL :</span><span>${result.valid_until}</span></div>
-                <div class="data-row"><span class="row-key">TYPE :</span><span>${result.type}</span></div>
+        if (match) {
+            // হোম পেজ লুকিয়ে রেজাল্ট পেজ দেখানো
+            document.getElementById('search-page').classList.add('hidden');
+            document.getElementById('result-page').classList.remove('hidden');
+
+            const container = document.getElementById('result-content');
+            container.innerHTML = `
+                <div class="data-item"><span class="data-label">Deliverable Id :</span> <span>${match.id}</span></div>
+                <div class="data-row"><span class="data-label">Published on :</span> <span>${match.published}</span></div>
+                <div class="data-item"><span class="data-label">QR Code Status :</span> <span style="color:green">${match.status}</span></div>
+                <div class="data-item"><span class="data-label">NAME :</span> <span>${match.name}</span></div>
+                <div class="data-item"><span class="data-label">ID :</span> <span>${match.user_id}</span></div>
+                <div class="data-item"><span class="data-label">VALID UNTIL :</span> <span>${match.valid_until}</span></div>
+                <div class="data-item"><span class="data-label">TYPE :</span> <span>${match.type}</span></div>
             `;
         } else {
-            alert("No data found with this number!");
+            alert("Certificate not found!");
         }
-    } catch (e) {
-        console.error("Data error", e);
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Data load error!");
     }
 }
