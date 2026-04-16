@@ -1,17 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { height: 100%; overflow: hidden; font-family: sans-serif; }
 
-body, html {
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* স্ক্রল বন্ধ করার জন্য */
-    font-family: Arial, sans-serif;
-}
-
-.app-container {
+.full-bg {
     background: url('Background.png') no-repeat center top;
     background-size: cover;
     height: 100vh;
@@ -19,121 +9,61 @@ body, html {
     position: relative;
 }
 
-.view {
+.container {
     height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* কন্টেন্ট উপরে রাখার জন্য */
-    padding-top: 25vh; /* বক্সটিকে একটু উপরে তোলার জন্য */
+    align-items: flex-start;
+    padding-top: 25vh; /* বক্সটি উপরে তোলার জন্য */
 }
 
-.white-card {
+.card {
     background: white;
     width: 90%;
     max-width: 400px;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     text-align: center;
 }
 
-h3 {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-
-/* সার্চ বক্স ডিজাইন */
-.search-box {
+.search-wrapper {
     display: flex;
     border: 1px solid #ccc;
     border-radius: 4px;
-    overflow: hidden;
     height: 45px;
-}
-
-.input-tag {
-    background: #f1f1f1;
-    font-size: 12px;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    border-right: 1px solid #ccc;
-    color: #555;
-}
-
-input {
-    flex: 1;
-    border: none;
-    padding: 0 10px;
-    outline: none;
-    font-size: 14px;
-}
-
-.blue-search-btn {
-    background: #0000a0; /* গাঢ় নীল */
-    width: 50px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.search-icon {
-    color: white;
-    font-size: 18px;
-}
-
-/* রেজাল্ট কার্ড স্টাইল */
-.green-tick {
-    background: #8bc34a;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-.scrollable-data {
-    text-align: left;
-    max-height: 50vh;
-    overflow-y: auto; /* ডাটা বেশি হলে শুধু বক্সের ভেতর স্ক্রল হবে */
-}
-
-.data-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 13px;
-}
-
-.data-label { font-weight: bold; color: #444; }
-
-.bottom-note {
-    font-size: 11px;
-    color: #777;
     margin-top: 15px;
 }
 
-/* ফুটার স্টাইল */
-.fixed-footer {
+.label-box {
+    background: #f0f0f0;
+    font-size: 11px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #ccc;
+}
+
+input { flex: 1; border: none; padding: 10px; outline: none; }
+
+#search-btn {
+    background: #00008b;
+    color: white;
+    border: none;
+    width: 50px;
+    cursor: pointer;
+}
+
+.footer-link {
     position: absolute;
     bottom: 20px;
     left: 20px;
 }
 
-.fixed-footer a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 13px;
-}
+.footer-link a { color: black; text-decoration: none; font-weight: bold; font-size: 13px; }
+.hidden { display: none; }
 
-.hidden { display: none !important; }
+/* রেজাল্ট কার্ডের ডাটা স্টাইল */
+.data-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee; font-size: 13px; text-align: left; }
+.data-label { font-weight: bold; }
+.tick-icon { background: #8bc34a; color: white; width: 35px; height: 35px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; }
