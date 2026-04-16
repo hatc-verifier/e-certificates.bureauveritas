@@ -1,112 +1,129 @@
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    -webkit-user-select: text;
-    user-select: text;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body, html { 
-    height: 100%; 
+body, html {
+    height: 100%;
     width: 100%;
-    overflow: hidden; /* নিচে স্ক্রল হবে না */
-    overscroll-behavior-y: contain; /* ওপর থেকে টানলে রিলোড হবে */
-    font-family: sans-serif; 
+    /* নিচের কোডটি স্ক্রল বন্ধ করবে কিন্তু রিলোড চালু রাখবে */
+    overflow: hidden; 
+    overscroll-behavior-y: contain; 
+    font-family: Arial, sans-serif;
 }
 
-.full-bg {
+.main-wrapper {
     background: url('Background.png') no-repeat center top;
     background-size: cover;
     height: 100vh;
     width: 100vw;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.container {
-    height: 100%;
+.content-view {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 22vh; /* বক্সটিকে লোগোর নিচে রাখার জন্য */
+    padding-top: 22vh; /* বক্সটি উপরে উঠানোর জন্য */
 }
 
-.card {
+.white-card {
     background: white;
-    width: 92%;
+    width: 90%;
     max-width: 400px;
-    padding: 22px;
+    padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     text-align: center;
-    z-index: 10;
+    z-index: 100;
 }
 
-.search-wrapper {
+h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* সার্চ বক্স এবং বাটন */
+.custom-search-bar {
     display: flex;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
     height: 46px;
-    margin-top: 18px;
     overflow: hidden;
 }
 
-.label-box {
-    background: #f1f1f1;
+.side-label {
+    background: #f4f4f4;
     font-size: 11px;
     padding: 0 10px;
     display: flex;
     align-items: center;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #bbb;
     color: #555;
 }
 
-input { flex: 1; border: none; padding: 10px; outline: none; font-size: 14px; }
-
-#search-btn {
-    background: #00008b;
-    color: white;
+input {
+    flex: 1;
     border: none;
-    width: 55px;
-    cursor: pointer;
-    font-size: 18px;
+    padding: 10px;
+    outline: none;
 }
 
-.footer-fixed {
+.blue-btn {
+    background: #002195; /* নেভি ব্লু */
+    color: white;
+    width: 55px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ফুটার পজিশন: একদম নিচে বামে */
+.bottom-footer {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    z-index: 999;
+    z-index: 200;
 }
 
-.footer-fixed a { 
-    color: black; 
-    text-decoration: none; 
-    font-weight: bold; 
-    font-size: 14px; 
+.bottom-footer a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .hidden { display: none !important; }
 
-/* রেজাল্ট ডাটা স্টাইল */
-.data-row { 
-    display: flex; 
-    justify-content: space-between; 
-    padding: 9px 0; 
-    border-bottom: 1px solid #eee; 
-    font-size: 13.5px; 
-    text-align: left; 
+/* রেজাল্ট স্টাইল */
+.status-tick {
+    background: #8bc34a;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
 }
-.data-label { font-weight: bold; color: #333; }
-.tick-icon { 
-    background: #8bc34a; 
-    color: white; 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 50%; 
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-bottom: 12px; 
-    font-size: 20px;
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    text-align: left;
 }
-.small-text { font-size: 11px; color: #777; margin-top: 15px; line-height: 1.4; }
+
+.data-label { font-weight: bold; color: #444; }
+.footer-note { font-size: 11px; color: #888; margin-top: 15px; }
