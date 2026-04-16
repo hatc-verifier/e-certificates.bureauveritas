@@ -1,32 +1,39 @@
-async function searchCertificate() {
-    const inputId = document.getElementById('doc-id').value.trim();
-    const response = await fetch('data.json');
-    const certificates = await response.json();
+async function handleSearch() {
+    const searchVal = document.getElementById('cert-input').value.trim();
+    
+    if (!searchVal) {
+        alert("Please enter a document number.");
+        return;
+    }
 
-    const result = certificates.find(cert => cert.id === inputId);
+    try {
+        const response = await fetch('data.json');
+        const data = await response.json();
 
-    if (result) {
-        document.getElementById('search-section').classList.add('hidden');
-        const resultSection = document.getElementById('result-section');
-        resultSection.classList.remove('hidden');
+        // JSON ফাইল থেকে ডাটা খোঁজা
+        const result = data.find(item => item.id === searchVal);
 
-        const container = document.getElementById('data-container');
-        container.innerHTML = `
-            <div class="data-row"><span class="data-label">Deliverable Id :</span> <span>${result.id}</span></div>
-            <div class="data-row"><span class="data-label">Published on :</span> <span>${result.published}</span></div>
-            <div class="data-row"><span class="data-label">QR Code Status :</span> <span>${result.status}</span></div>
-            <div class="data-row"><span class="data-label">NAME :</span> <span>${result.name}</span></div>
-            <div class="data-row"><span class="data-label">ID :</span> <span>${result.user_id}</span></div>
-            <div class="data-row"><span class="data-label">ISSUED ON :</span> <span>${result.issued}</span></div>
-            <div class="data-row"><span class="data-label">VALID UNTIL :</span> <span>${result.valid_until}</span></div>
-            <div class="data-row"><span class="data-label">TYPE :</span> <span>${result.type}</span></div>
-            <div class="data-row"><span class="data-label">MODEL :</span> <span>${result.model}</span></div>
-            <div class="data-row"><span class="data-label">COMPANY :</span> <span>${result.company}</span></div>
-            <div class="data-row"><span class="data-label">TRAINING LOCATION :</span> <span>${result.location}</span></div>
-            <div class="data-row"><span class="data-label">TRAINER :</span> <span>${result.trainer}</span></div>
-        `;
-    } else {
-        alert("ভুল নম্বর! দয়া করে সঠিক সার্টিফিকেট নম্বর দিন।");
+        if (result) {
+            // হোম পেজ লুকানো এবং রেজাল্ট পেজ দেখানো
+            document.getElementById('home-page').classList.add('hidden');
+            const resultPage = document.getElementById('result-page');
+            resultPage.classList.remove('hidden');
+
+            const display = document.getElementById('result-display');
+            display.innerHTML = `
+                <div class="info-row"><span class="row-label">Deliverable Id:</span> <span>${result.id}</span></div>
+                <div class="info-row"><span class="row-label">Published on:</span> <span>${result.published}</span></div>
+                <div class="info-row"><span class="row-label">QR Code Status:</span> <span>${result.status}</span></div>
+                <div class="info-row"><span class="row-label">NAME:</span> <span>${result.name}</span></div>
+                <div class="info-row"><span class="row-label">ID:</span> <span>${result.user_id}</span></div>
+                <div class="info-row"><span class="row-label">VALID UNTIL:</span> <span>${result.valid_until}</span></div>
+                <div class="info-row"><span class="row-label">TYPE:</span> <span>${result.type}</span></div>
+                <div class="info-row"><span class="row-label">TRAINING LOCATION:</span> <span>${result.location}</span></div>
+            `;
+        } else {
+            alert("Certificate not found!");
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
     }
 }
-
