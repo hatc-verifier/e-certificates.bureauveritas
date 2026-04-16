@@ -1,94 +1,124 @@
-body, html {
+* {
     margin: 0;
     padding: 0;
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
 
-/* ব্যাকগ্রাউন্ড ইমেজ সেটআপ */
-body {
-    background: url('background.png') no-repeat center center fixed;
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* আপনার সাবমিট করা Background.png এখানে ব্যবহার করা হয়েছে */
+.bg-wrapper {
+    background: url('Background.png') no-repeat center top;
     background-size: cover;
-}
-
-/* ব্যাকগ্রাউন্ডের ওপর হালকা ঝাপসা ভাব দেওয়ার জন্য */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
+    background-attachment: fixed; /* স্ক্রল করলেও ব্যাকগ্রাউন্ড নড়বে না */
+    height: 100vh;
     width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4); /* ৩০-৪০% ঝাপসা ভাব */
-    z-index: -1;
+    position: relative;
 }
 
-.main-wrapper {
+/* কন্টেন্টকে ব্যাকগ্রাউন্ডের মাঝখানে নিয়ে আসার জন্য */
+.center-content {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #002395; /* নেভি ব্লু */
-    color: white;
-    padding: 15px 20px;
-}
-
-.header-content img { height: 45px; vertical-align: middle; }
-.header-content p { display: inline-block; margin-left: 10px; font-size: 1.2rem; }
-
-.content-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.2); /* ব্যাকগ্রাউন্ড ইমেজকে আরও স্পষ্ট করার জন্য হালকা অপাসিটি */
 }
 
-.search-container, .info-table {
-    background: white;
-    padding: 25px;
-    border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+/* সাদা বক্সের ডিজাইন (সার্চ এবং রেজাল্ট উভয়ের জন্য) */
+.search-box, .result-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    text-align: center;
 }
 
+/* সার্চ ইনপুট এরিয়া */
 .input-group {
     display: flex;
-    margin-top: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-.label { background: #f0f0f0; padding: 10px; font-size: 13px; color: #555; }
-input { border: none; flex: 1; padding: 10px; outline: none; }
-button { background: #002395; color: white; border: none; padding: 0 15px; cursor: pointer; }
+.label {
+    background: #f4f4f4;
+    padding: 12px;
+    font-size: 13px;
+    color: #333;
+    border-right: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+button {
+    background: #00008b; /* গাঢ় নীল */
+    color: white;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0000cd;
+}
 
 .hidden { display: none; }
 
-/* রেজাল্ট টেবিল স্টাইল */
-.info-row {
+/* রেজাল্ট ডাটা দেখানোর স্টাইল */
+.info-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
+    text-align: left;
     font-size: 14px;
 }
-.row-label { font-weight: bold; color: #333; }
 
-.success-icon {
-    background: #4CAF50;
+.info-label { 
+    font-weight: bold; 
+    color: #555;
+}
+
+.success-mark {
+    background: #8bc34a;
     color: white;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 15px;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-footer { text-align: center; padding: 20px; }
-footer a { color: #333; text-decoration: none; font-weight: bold; }
+.footer-link {
+    margin-top: 20px;
+}
+
+.footer-link a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+}
