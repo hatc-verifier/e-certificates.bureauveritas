@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <div class="logo-area">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Bureau_Veritas_Logo.png" alt="Logo" class="logo">
+                <div class="auth-text">Authenticate <span>your document</span></div>
+            </div>
+        </header>
+
+        <div class="content-wrapper" id="search-section">
+            <div class="info-box">
+                <p>Please search your e-document by filling the document number.</p>
+                <div class="search-bar">
+                    <span class="label">Document number</span>
+                    <input type="text" id="doc-id" placeholder="Enter ID here...">
+                    <button onclick="searchCertificate()"><i class="search-icon">🔍</i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper hidden" id="result-section">
+            <div class="success-tick">✔️</div>
+            <div class="result-details" id="data-container">
+                </div>
+            <p class="contact-text">For any further information on this document, please contact the issuer of the document.</p>
+        </div>
+
+        <footer>
+            <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
