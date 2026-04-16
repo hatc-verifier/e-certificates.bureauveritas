@@ -1,19 +1,14 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body, html {
     height: 100%;
     width: 100%;
-    /* নিচের কোডটি স্ক্রল বন্ধ করবে কিন্তু রিলোড চালু রাখবে */
-    overflow: hidden; 
-    overscroll-behavior-y: contain; 
+    overflow: hidden; /* স্ক্রল বন্ধ */
+    overscroll-behavior-y: contain; /* ওপর থেকে টানলে রিলোড হবে */
     font-family: Arial, sans-serif;
 }
 
-.main-wrapper {
+.main-container {
     background: url('Background.png') no-repeat center top;
     background-size: cover;
     height: 100vh;
@@ -28,83 +23,69 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 22vh; /* বক্সটি উপরে উঠানোর জন্য */
+    padding-top: 25vh; /* লোগোর নিচে বক্স বসানোর জন্য */
 }
 
-.white-card {
+.search-card {
     background: white;
-    width: 90%;
+    width: 92%;
     max-width: 400px;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     text-align: center;
-    z-index: 100;
 }
 
-h3 {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-}
+h3 { font-size: 15px; color: #333; margin-bottom: 20px; line-height: 1.4; }
 
-/* সার্চ বক্স এবং বাটন */
-.custom-search-bar {
+/* ইনপুট এবং নীল বাটন */
+.input-group {
     display: flex;
-    border: 1px solid #bbb;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    height: 46px;
+    height: 48px;
     overflow: hidden;
 }
 
-.side-label {
-    background: #f4f4f4;
+.label-box {
+    background: #f1f1f1;
     font-size: 11px;
     padding: 0 10px;
     display: flex;
     align-items: center;
-    border-right: 1px solid #bbb;
+    border-right: 1px solid #ccc;
     color: #555;
 }
 
-input {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    outline: none;
-}
+input { flex: 1; border: none; padding: 10px; outline: none; font-size: 14px; }
 
-.blue-btn {
-    background: #002195; /* নেভি ব্লু */
+#search-trigger {
+    background: #002195;
     color: white;
     width: 55px;
     border: none;
     cursor: pointer;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 18px;
 }
 
-/* ফুটার পজিশন: একদম নিচে বামে */
-.bottom-footer {
+/* ফুটার পজিশন */
+.footer-fixed {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    z-index: 200;
 }
 
-.bottom-footer a {
-    color: #000;
+.footer-fixed a {
+    color: black;
     text-decoration: none;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .hidden { display: none !important; }
 
-/* রেজাল্ট স্টাইল */
-.status-tick {
+/* রেজাল্ট কার্ডের ডাটা ডিজাইন */
+.status-icon {
     background: #8bc34a;
     color: white;
     width: 40px;
@@ -116,7 +97,7 @@ input {
     margin-bottom: 15px;
 }
 
-.data-row {
+.data-item {
     display: flex;
     justify-content: space-between;
     padding: 8px 0;
@@ -126,4 +107,4 @@ input {
 }
 
 .data-label { font-weight: bold; color: #444; }
-.footer-note { font-size: 11px; color: #888; margin-top: 15px; }
+.warning-text { font-size: 11px; color: #888; margin-top: 15px; }
