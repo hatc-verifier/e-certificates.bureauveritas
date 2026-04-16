@@ -7,29 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="full-bg">
-        <div id="search-view" class="container">
-            <div class="card">
+    <div class="main-wrapper">
+        <div id="search-view" class="content-view">
+            <div class="white-card">
                 <h3>Please search your e-document by filling the document number.</h3>
-                <div class="search-wrapper">
-                    <div class="label-box">Document number</div>
-                    <input type="text" id="cert-input" placeholder="148-2026-022489-EN">
-                    <button id="search-btn" onclick="searchData()">🔍</button>
+                <div class="custom-search-bar">
+                    <div class="side-label">Document number</div>
+                    <input type="text" id="cert-id" placeholder="148-2026-022489-EN">
+                    <button class="blue-btn" onclick="searchData()">🔍</button>
                 </div>
             </div>
         </div>
 
-        <div id="result-view" class="container hidden">
-            <div class="card result-card">
-                <div class="tick-icon">✔️</div>
-                <div id="display-data"></div>
-                <p class="small-text">For any further information on this document, please contact the issuer of the document.</p>
+        <div id="result-view" class="content-view hidden">
+            <div class="white-card result-box">
+                <div class="status-tick">✔️</div>
+                <div id="data-container"></div>
+                <p class="footer-note">For any further information on this document, please contact the issuer of the document.</p>
             </div>
         </div>
 
-        <footer class="footer-fixed">
+        <div class="bottom-footer">
             <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
-        </footer>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
