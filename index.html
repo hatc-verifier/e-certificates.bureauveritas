@@ -8,17 +8,20 @@
 </head>
 <body>
     <div class="main-container">
+        
+        <!-- Search Section -->
         <div id="search-section" class="content-view">
             <div class="search-card">
                 <h3>Please search your e-document by filling the document number.</h3>
                 <div class="input-group">
                     <div class="label-box">Document number</div>
-                    <input type="text" id="cert-number" placeholder="e.g. 148-2026-022489-EN" value="148-2026-022489-EN">
+                    <input type="text" id="cert-number" placeholder="e.g. 148-2026-022489-EN" value="">
                     <button id="search-trigger" onclick="verifyCertificate()">🔍</button>
                 </div>
             </div>
         </div>
 
+        <!-- Result Section -->
         <div id="result-section" class="content-view hidden">
             <div class="search-card result-box">
                 <div class="status-icon">✔️</div>
