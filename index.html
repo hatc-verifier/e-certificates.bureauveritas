@@ -7,35 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="app-container">
-        <main id="search-page" class="view">
-            <div class="white-card">
+    <div class="full-bg">
+        <div id="search-view" class="container">
+            <div class="card">
                 <h3>Please search your e-document by filling the document number.</h3>
-                <div class="search-box">
-                    <div class="input-tag">Document number</div>
-                    <input type="text" id="cert-id" placeholder="148-2026-022489-EN">
-                    <button class="blue-search-btn" onclick="goToResult()">
-                        <span class="search-icon">🔍</span>
-                    </button>
+                <div class="search-wrapper">
+                    <div class="label-box">Document number</div>
+                    <input type="text" id="cert-input" placeholder="148-2026-022489-EN">
+                    <button id="search-btn" onclick="searchData()">🔍</button>
                 </div>
             </div>
-        </main>
+        </div>
 
-        <main id="result-page" class="view hidden">
-            <div class="white-card result-card">
-                <div class="green-tick">✔️</div>
-                <div id="result-content" class="scrollable-data">
-                    </div>
-                <p class="bottom-note">For any further information on this document, please contact the issuer of the document.</p>
+        <div id="result-view" class="container hidden">
+            <div class="card result-card">
+                <div class="tick-icon">✔️</div>
+                <div id="display-data"></div>
+                <p class="small-text">For any further information on this document, please contact the issuer of the document.</p>
             </div>
-        </main>
+        </div>
 
-        <footer class="fixed-footer">
+        <div class="footer-link">
             <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
-        </footer>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
