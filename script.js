@@ -1,34 +1,40 @@
-async function searchData() {
-    const inputField = document.getElementById('cert-id');
-    const val = inputField.value.trim();
+async function verifyCertificate() {
+    const userInput = document.getElementById('cert-number').value.trim();
 
-    if (!val) {
+    // বক্স খালি থাকলে ওয়ার্নিং দেবে
+    if (!userInput) {
         alert("Please enter a document number.");
         return;
     }
 
     try {
         const response = await fetch('data.json');
-        const data = await response.json();
-        const found = data.find(item => item.id === val);
+        const certificates = await response.json();
+        
+        // ডাটাবেজে আপনার দেওয়া নাম্বার খুঁজবে
+        const foundData = certificates.find(item => item.id === userInput);
 
-        if (found) {
-            document.getElementById('search-view').classList.add('hidden');
-            document.getElementById('result-view').classList.remove('hidden');
+        if (foundData) {
+            // সঠিক নাম্বার হলে রেজাল্ট পেজ দেখাবে
+            document.getElementById('search-section').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
 
-            const container = document.getElementById('data-container');
+            const container = document.getElementById('result-data');
             container.innerHTML = `
-                <div class="data-row"><span class="data-label">Deliverable Id :</span> <span>${found.id}</span></div>
-                <div class="data-row"><span class="data-label">Status :</span> <span style="color:green;font-weight:bold;">Validated</span></div>
-                <div class="data-row"><span class="data-label">NAME :</span> <span>${found.name}</span></div>
-                <div class="data-row"><span class="data-label">ID :</span> <span>${found.user_id}</span></div>
-                <div class="data-row"><span class="data-label">VALID UNTIL :</span> <span>${found.valid_until}</span></div>
-                <div class="data-row"><span class="data-label">TYPE :</span> <span>${found.type}</span></div>
+                <div class="data-item"><span class="data-label">Deliverable Id :</span> <span>${foundData.id}</span></div>
+                <div class="data-item"><span class="data-label">Published on :</span> <span>${foundData.published}</span></div>
+                <div class="data-item"><span class="data-label">Status :</span> <span style="color:green;font-weight:bold;">Validated</span></div>
+                <div class="data-item"><span class="data-label">NAME :</span> <span>${foundData.name}</span></div>
+                <div class="data-item"><span class="data-label">ID :</span> <span>${foundData.user_id}</span></div>
+                <div class="data-item"><span class="data-label">VALID UNTIL :</span> <span>${foundData.valid_until}</span></div>
+                <div class="data-item"><span class="data-label">TYPE :</span> <span>${foundData.type}</span></div>
             `;
         } else {
-            alert("Record not found!");
+            // ভুল নাম্বার হলে এই মেসেজ আসবে
+            alert("Certificate not found in our record!");
         }
-    } catch (err) {
-        alert("Error loading data.json");
+    } catch (error) {
+        console.error("Error:", error);
+        alert("System error! Please make sure data.json is present.");
     }
 }
