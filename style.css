@@ -7,8 +7,13 @@
 body, html {
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    touch-action: none;
 }
 
 .main-container {
@@ -19,6 +24,7 @@ body, html {
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .content-view {
@@ -85,6 +91,7 @@ input {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    z-index: 10;
 }
 
 .footer-fixed a {
