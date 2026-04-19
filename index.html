@@ -2,39 +2,318 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Certificate Verification</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="main-container">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rifat Hossain | Barista &amp; Cinematic Vlogger | Najran, KSA">
+    <title>Rifat Hossain | Barista &amp; Cinematic Vlogger • Najran, KSA</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Inter:wght@400;500;600&amp;display=swap');
         
-        <!-- Search Section -->
-        <div id="search-section" class="content-view">
-            <div class="search-card">
-                <h3>Please search your e-document by filling the document number.</h3>
-                <div class="input-group">
-                    <div class="label-box">Document number</div>
-                    <input type="text" id="cert-number" placeholder="e.g. 148-2026-022489-EN" value="">
-                    <button id="search-trigger" onclick="verifyCertificate()">🔍</button>
+        :root {
+            --tw-color-coffee: #6b3e1e;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-ready * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #f8f1e3 0%, #f5e8d3 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        /* Coffee-stained paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(107, 62, 30, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(107, 62, 30, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.6;
+            mix-blend-mode: multiply;
+        }
+        
+        .section-title {
+            font-size: 3.75rem;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(92deg, #6b3e1e 0%, #9c6644 100%);
+            box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.4);
+        }
+        
+        .coffee-cup {
+            animation: steam 2s infinite ease-in-out;
+        }
+        
+        @keyframes steam {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #d4a017;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .vlog-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .vlog-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 25px 25px 30px -15px rgb(107 62 30);
+        }
+        
+        .back-to-top {
+            box-shadow: 0 10px 15px -3px rgb(107 62 30);
+        }
+    </style>
+</head>
+<body class="tailwind-ready text-stone-800">
+    <!-- NAVBAR -->
+    <nav class="bg-[#f8f1e3]/95 backdrop-blur-md border-b border-amber-200 sticky top-0 z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-10 h-10 bg-[#6b3e1e] rounded-2xl flex items-center justify-center text-white text-2xl shadow-inner">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div>
+                        <h1 class="heading-font text-2xl tracking-[-1px] text-[#6b3e1e]">Rifat Hossain</h1>
+                        <p class="text-xs font-medium text-amber-700 tracking-[1px] -mt-1">BARISTA • CINEMATIC VLOGGER</p>
+                    </div>
+                    <div class="ml-2 text-xs font-semibold px-3 py-px bg-amber-100 text-amber-800 rounded-3xl">NAJRAN, KSA</div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+                    <a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" class="nav-link text-stone-700 hover:text-[#6b3e1e]">The Art of the Brew</a>
+                    <a href="#cinematic" onclick="document.getElementById('cinematic').scrollIntoView({behavior:'smooth'})" class="nav-link text-stone-700 hover:text-[#6b3e1e]">A Cinematic Life</a>
+                    <a href="#skills" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})" class="nav-link text-stone-700 hover:text-[#6b3e1e]">Excellence &amp; Craft</a>
+                    <a href="#chronicles" onclick="document.getElementById('chronicles').scrollIntoView({behavior:'smooth'})" class="nav-link text-stone-700 hover:text-[#6b3e1e]">Najran Chronicles</a>
+                    <a href="#showcase" onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'})" class="nav-link text-stone-700 hover:text-[#6b3e1e]">Vlog Showcase</a>
+                    <a href="#majlis" onclick="document.getElementById('majlis').scrollIntoView({behavior:'smooth'})" class="nav-link text-stone-700 hover:text-[#6b3e1e]">The Majlis</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- Social Icons -->
+                    <a href="https://youtube.com" target="_blank" class="w-9 h-9 flex items-center justify-center text-[#6b3e1e] hover:text-amber-700 text-xl"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="w-9 h-9 flex items-center justify-center text-[#6b3e1e] hover:text-amber-700 text-xl"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="w-9 h-9 flex items-center justify-center text-[#6b3e1e] hover:text-amber-700 text-xl"><i class="fa-brands fa-instagram"></i></a>
+                    
+                    <!-- Mobile Hamburger -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden w-11 h-11 flex items-center justify-center text-3xl text-[#6b3e1e]">
+                        <i id="hamburger-icon" class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-8 pb-6 border-t border-amber-100 bg-[#f8f1e3]">
+                <div class="flex flex-col gap-y-6 pt-6 text-lg font-medium">
+                    <a href="#about" onclick="toggleMobileMenu()" class="text-stone-700">The Art of the Brew</a>
+                    <a href="#cinematic" onclick="toggleMobileMenu()" class="text-stone-700">A Cinematic Life</a>
+                    <a href="#skills" onclick="toggleMobileMenu()" class="text-stone-700">Excellence &amp; Craft</a>
+                    <a href="#chronicles" onclick="toggleMobileMenu()" class="text-stone-700">Najran Chronicles</a>
+                    <a href="#showcase" onclick="toggleMobileMenu()" class="text-stone-700">Vlog Showcase</a>
+                    <a href="#majlis" onclick="toggleMobileMenu()" class="text-stone-700">The Majlis</a>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <!-- Result Section -->
-        <div id="result-section" class="content-view hidden">
-            <div class="search-card result-box">
-                <div class="status-icon">✔️</div>
-                <div id="result-data"></div>
-                <p class="warning-text">For any further information on this document, please contact the issuer of the document.</p>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-12 items-center h-full">
+            <!-- Left Content -->
+            <div class="md:col-span-7 pt-20 md:pt-0" data-aos="fade-right">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md text-white text-sm font-medium px-6 py-3 rounded-3xl mb-8 border border-white/30">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    NAJRAN, KSA • BREWING STORIES SINCE 2022
+                </div>
+                
+                <!-- 3-Sentence Powerful Headline -->
+                <h1 class="text-white heading-font text-6xl md:text-7xl leading-none tracking-[-2px] mb-8">
+                    Caffeine awakens the senses.<br>
+                    Cinematography captures the soul.<br>
+                    In Najran, they converge in perfect harmony.
+                </h1>
+                
+                <!-- Long Sub-headline -->
+                <p class="text-amber-100 text-xl md:text-2xl max-w-2xl leading-relaxed mb-12">
+                    As a proud Barista and Cinematic Vlogger in the historic city of Najran, Rifat Hossain stands as a living bridge between the timeless traditions of Saudi hospitality and the vibrant pulse of modern global culture. 
+                    Through every meticulously crafted cup and every frame that dances across the screen, he invites the world to experience the warmth, the stories, and the soul of Najran — where ancient mountains meet steaming espresso shots and every customer becomes part of an unfolding cinematic masterpiece.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#showcase" onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'})" 
+                       class="inline-flex items-center gap-x-3 bg-white text-[#6b3e1e] hover:bg-amber-100 font-semibold text-lg px-8 h-14 rounded-3xl">
+                        <i class="fa-solid fa-play"></i>
+                        EXPLORE VLOGS
+                    </a>
+                    <a href="#majlis" onclick="document.getElementById('majlis').scrollIntoView({behavior:'smooth'})" 
+                       class="inline-flex items-center gap-x-3 border-2 border-white text-white hover:bg-white/10 font-semibold text-lg px-8 h-14 rounded-3xl">
+                        JOIN THE MAJLIS
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="mt-16 flex items-center gap-x-8 text-white/80 text-sm">
+                    <div class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-youtube text-2xl"></i>
+                        <div>
+                            <div class="font-semibold">142K</div>
+                            <div class="text-xs">YouTube Subscribers</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                        <i class="fa-solid fa-tiktok text-2xl"></i>
+                        <div>
+                            <div class="font-semibold">1.8M</div>
+                            <div class="text-xs">TikTok Followers</div>
+                        </div>
+                    </div>
+                    <div class="h-6 w-px bg-white/30"></div>
+                    <p class="text-xs max-w-[180px] leading-tight">Featured in Saudi Tourism &amp; Arab Coffee Awards 2025</p>
+                </div>
+            </div>
+            
+            <!-- Right Visual -->
+            <div class="md:col-span-5 relative hidden md:flex justify-end items-center">
+                <div class="relative w-96 h-96 rounded-[4rem] bg-gradient-to-br from-amber-300 to-[#f5e8d3] shadow-2xl rotate-12 overflow-hidden">
+                    <!-- Fake hero visual -->
+                    <div class="absolute inset-0 flex items-center justify-center text-[180px] opacity-10">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+                    <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur rounded-3xl p-6 text-center">
+                        <div class="text-[#6b3e1e] text-2xl heading-font mb-2">“Every cup tells a story. Every frame captures a moment.”</div>
+                        <div class="text-stone-600 text-sm">— Rifat Hossain</div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-amber-700 text-white text-xs font-bold px-6 py-2 rotate-45 shadow-xl">LIVE FROM NAJRAN</div>
+                </div>
             </div>
         </div>
+        
+        <!-- Scroll prompt -->
+        <div class="absolute bottom-12 left-1/2 hidden md:flex flex-col items-center text-white/70 text-sm">
+            <div class="mb-2">SCROLL FOR THE JOURNEY</div>
+            <i class="fa-solid fa-chevron-down animate-bounce text-2xl"></i>
+        </div>
+        
+        <!-- Coffee beans floating decoration -->
+        <div class="absolute top-12 right-12 text-4xl opacity-20 animate-[spin_25s_linear_infinite] hidden lg:block">☕</div>
+        <div class="absolute bottom-20 left-12 text-5xl opacity-20 animate-[spin_40s_linear_infinite] hidden lg:block">🫘</div>
+    </section>
 
-        <footer class="footer-fixed">
-            <a href="https://group.bureauveritas.com/" target="_blank">Visit Bureau Veritas Website</a>
-        </footer>
-    </div>
+    <!-- THE ART OF THE BREW - ABOUT SECTION -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="uppercase text-amber-700 font-medium tracking-[2px]">CHAPTER ONE</span>
+            <h2 class="section-title heading-font text-[#6b3e1e]">The Art of the Brew</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-12 gap-12 max-w-6xl mx-auto">
+            <div class="md:col-span-7" data-aos="fade-up" data-aos-delay="100">
+                <!-- Paragraph 1: The Journey -->
+                <p class="text-lg leading-relaxed text-stone-600 mb-8">
+                    Rifat Hossain’s story is one of courage, curiosity, and cultural alchemy. Born amid the verdant rivers and bustling markets of Bangladesh, he answered a deeper calling that carried him thousands of miles across the sea to the sun-drenched Kingdom of Saudi Arabia. The transition was not without its trials — mastering a new language, adapting to the desert’s unrelenting rhythm, and finding footing in a society whose customs and warmth felt both foreign and profoundly familiar. Yet in the embrace of Najran’s majestic mountains and ancient soul, Rifat discovered not merely a place to work, but a true home. Here, the call to prayer at dawn, the scent of cardamom in the air, and the genuine smiles of his new community wove themselves into the fabric of his identity, turning every challenge into a chapter of resilience and belonging.
+                </p>
+                
+                <!-- Paragraph 2: The Craft -->
+                <p class="text-lg leading-relaxed text-stone-600 mb-8">
+                    To be a barista in Najran is to practice a living art form. It begins with the meticulous dialing-in of espresso shots — measuring pressure, temperature, and grind size until the perfect 25-second extraction yields a shot that sings with notes of caramel, chocolate, and bright citrus. The chemistry of milk steaming follows: transforming cold milk into silky microfoam at precisely 60 °C, creating that velvet texture that crowns every flat white and cappuccino. Then comes the final flourish — the 45-degree wrist pour that births intricate latte art, each rosetta or tulip a testament to patience, muscle memory, and the quiet joy of making someone’s day more beautiful. In Rifat’s hands, coffee is never just a beverage; it is an experience crafted with reverence for the bean, the guest, and the moment.
+                </p>
+                
+                <!-- The Bangla Touch -->
+                <div class="bg-gradient-to-r from-amber-50 to-white border border-amber-200 rounded-3xl p-8 italic text-xl leading-relaxed text-stone-700 flex items-start gap-x-6">
+                    <i class="fa-solid fa-heart text-3xl text-amber-700 mt-1"></i>
+                    <div>
+                        <p class="mb-4">In his own heartfelt words, Rifat captures the poetry of his daily life:</p>
+                        <p class="text-[#6b3e1e] font-medium">"সৌদি আরবের নাজরানে আমার দৈনন্দিন জীবন, কফি শপের কাজ, ল্যাটে আর্ট, কাস্টমারদের সাথে মুহূর্ত এবং ছোট ছোট সুন্দর অভিজ্ঞতা শেয়ার করি।"</p>
+                        <p class="text-sm text-stone-500 mt-6">— This tender reflection reveals the gentle joy he finds in every shared cup and captured frame.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative side panel -->
+            <div class="md:col-span-5 flex flex-col justify-center gap-y-8" data-aos="fade-up" data-aos-delay="300">
+                <div class="border-l-4 border-[#d4a017] pl-6">
+                    <div class="uppercase text-xs font-semibold mb-2">FROM BANGLADESH TO NAJRAN</div>
+                    <h4 class="text-3xl heading-font">A journey of 4,200 kilometers that became a lifelong love story with coffee and culture.</h4>
+                </div>
+                <div class="text-amber-700 flex items-center gap-x-4 text-5xl">
+                    <i class="fa-solid fa-plane"></i>
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <i class="fa-solid fa-mountain-sun"></i>
+                </div>
+                <p class="text-sm max-w-xs text-stone-500">Every sunrise in Najran reminds him that the best brews are born from the courage to begin again in a new land.</p>
+            </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- A CINEMATIC LIFE IN NAJRAN -->
+    <section id="cinematic" class="bg-[#6b3e1e] text-white py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="uppercase text-amber-300 font-medium tracking-[2px]">CHAPTER TWO</span>
+                <h2 class="section-title heading-font">A Cinematic Life in Najran</h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto text-lg leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                <p class="mb-8">
+                    Rifat began vlogging not as a career, but as a quiet act of gratitude. He wanted the world to see the Najran he had fallen in love with — the way golden light spills across the jagged mountains at dawn, the ancient stones of Al-Ukhdood whispering centuries-old secrets, and the bustling Souqs alive with the laughter of merchants and the fragrance of frankincense, saffron, and fresh dates. What started as simple phone recordings of his morning brews quickly evolved into cinematic love letters to his adopted home. Each vlog is filmed with the same precision he brings to latte art: deliberate framing, natural lighting, and an instinctive sense of story.
+                </p>
+                <p class="mb-8">
+                    At the heart of his work lies a simple philosophy: 
+                    <span class="italic font-medium">"Every customer has a story, and every cup is a scene."</span> 
+                    The Saudi gentleman who orders his daily Gahwa and shares tales of his grandfather’s camel caravans becomes the protagonist of one episode. The young student practicing English over a flat white becomes the emotional core of another. Through mobile cinematography and thoughtful color grading that captures the warm desert palette — ochre, terracotta, and soft gold — Rifat transforms ordinary days into visual poetry that resonates across continents.
+                </p>
+                <
